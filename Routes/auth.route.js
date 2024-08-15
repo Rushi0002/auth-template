@@ -1,17 +1,17 @@
 import express from "express";
-import { AuthController } from "../Controllers/auth.controller.js";
+import {
+  LoginController,
+  RefreshTokenController,
+  RegisterController,
+} from "../Controllers/auth.controller.js";
 
 const router = express.Router();
 
-router.post("/register", AuthController);
+router.post("/register", RegisterController);
 
-router.post("/login", async (req, res, next) => {
-  res.send("login route");
-});
+router.post("/login", LoginController);
 
-router.post("/refresh-token", async (req, res, next) => {
-  res.send("refresh-token route");
-});
+router.post("/refresh-token", RefreshTokenController);
 
 router.delete("/logout", async (req, res, next) => {
   res.send("logout route");

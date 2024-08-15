@@ -4,6 +4,7 @@ import createHttpError from "http-errors";
 import dotenv from "dotenv";
 import AuthRoute from "./Routes/auth.route.js";
 import Connection from "./Helpers/Connection.js";
+import { verifyAccessToken } from "./Helpers/Jwt_helper.js";
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 //mongodb connection
 Connection();
 
-app.get("/", async (req, res, next) => {
+app.get("/", verifyAccessToken, async (req, res, next) => {
   res.send("Hello");
 });
 
